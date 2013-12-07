@@ -26,7 +26,7 @@
       <script src="{$_layoutParams.ruta_js}ie/respond.min.js" type="text/javascript"></script>
     <![endif]-->
   </head>
-    <body class='contrast-fb fixed-header fixed-navigation'>
+    <body class='contrast-green fixed-header fixed-navigation'>
     <!-- COMIENZO DEL HEADER -->
     <header>
       <nav class='navbar navbar-default navbar-fixed-top'>

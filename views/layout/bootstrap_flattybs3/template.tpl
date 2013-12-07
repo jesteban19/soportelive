@@ -22,7 +22,7 @@
       <script src="{$_layoutParams.ruta_js}ie/respond.min.js" type="text/javascript"></script>
     <![endif]-->
   </head>
-	<body class='contrast-fb fixed-header fixed-navigation'>
+	<body class='contrast-green fixed-header fixed-navigation'>
 	
     <!-- COMIENZO DEL HEADER -->
     <header>
@@ -149,7 +149,7 @@
     <script src="{$_layoutParams.ruta_js}plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/timeago/jquery.timeago.js" type="text/javascript"></script>
-    <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/rating/bootstrap-rating-input.min"></script>
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/rating/bootstrap-rating-input.min.js"></script>
     <!-- load Js -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}
     {foreach item=js from=$_layoutParams.js}

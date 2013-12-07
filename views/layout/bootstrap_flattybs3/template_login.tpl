@@ -32,7 +32,7 @@
       <script src="{$_layoutParams.ruta_js}ie/respond.min.js" type="text/javascript"></script>
     <![endif]-->
   </head>
-	<body class='contrast-fb login contrast-background'>
+	<body class='contrast-green login contrast-background'>
 	
 	<!-- incluimos el contenido -->
 	{include file=$_contenido}

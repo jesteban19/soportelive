@@ -5,13 +5,19 @@ $(function(){
 	var CountTimeInit=0;
 	var countPost=0;
 	var persitenteIndex=false;
+	var generating='false';
 
 	var generating=function(){
 		$.post(BASE_URL+'index/generatingTicket',
 			$("#generating_ticket").serialize(),
 			function(e){
 				//success registro
+				if(e=='true'){
+					generating='true';
+				}
+
 				viewTime();
+				
 		});
 	}
 	var viewTime=function(){
@@ -19,15 +25,18 @@ $(function(){
 			function(d){
 
 				$("#loading_next").html(d);	
-				CountTimeInit=parseInt($("#total_count").text());
-				
-				if(tTime==null){					
-					tTime=setInterval(displayTime,1000);
-					tTimeAjax=setInterval(viewTime,1000*5);
-				}else{
-					countPost=countPost+5;
-					displayTime();
+				if(generating=='true'){
+					CountTimeInit=parseInt($("#total_count").text());
+					
+					if(tTime==null){								
+						tTime=setInterval(displayTime,1000);
+						tTimeAjax=setInterval(viewTime,1000*5);
+					}else{
+						countPost=countPost+5;
+						displayTime();
+					}
 				}
+				
 
 				
 			});
@@ -62,6 +71,7 @@ $(function(){
 
 	$("#btn_next").click(function(e){
 		if($("#generating_ticket").valid()){
+			$("#btn_next").hide();
 			e.preventDefault();			
 			generating();
 		}
@@ -80,7 +90,8 @@ $(function(){
 	$("#confirm-login").click(function(){
 		$("#error_login").hide();
 
-		if($("#form-login-index").valid()){		
+		if($("#form-login-index").valid()){
+			$("#confirm-login").hide();
 			$.post(BASE_URL+'/index/login',
 				$('#form-login-index').serialize()
 				, function(data) {
@@ -88,6 +99,7 @@ $(function(){
 					location.href=BASE_URL+'panel';
 				}else{
 					$("#error_login").show();
+					$("#confirm-login").show();
 				}
 			});
 		}

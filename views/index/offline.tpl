@@ -22,7 +22,7 @@
                     <small>&oacute;</small>
                   </p>
                   <div class="text-center">
-                    <a class="btn btn-md btn-ablock" href="index-2.html">
+                    <a class="btn btn-md btn-ablock" href="{$_layoutParams.base_url}">
                       <i class="icon-chevron-left"></i>
                       Regresar
                     </a>

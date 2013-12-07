@@ -107,6 +107,9 @@ class indexController extends Controller
 				$this->getSql('mensaje'),
 				$support);
 				Session::set('idticket',$id[0]);
+			echo "true";
+		}else{
+			echo "false";
 		}
 		
 	}
@@ -117,7 +120,7 @@ class indexController extends Controller
 	{	
 		if(!Session::get('idticket')){
 			//si es que no se creo es por que no hay usuarios online o paso algo...
-			$this->_view->renderizar('offline',false,false,'template_login');
+			$this->_view->renderizar('offline',false,'offline');
 		}else{
 			$ticket=$this->_ticket->get(Session::get('idticket'));
 			if(count($ticket)<=0){
