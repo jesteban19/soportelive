@@ -44,7 +44,9 @@
                         <div class='col-sm-12'>
                           <div class='box'>
                             <div class='box-content box-no-padding'>
-                              <div class='scrollable' data-scrollable-height='300' data-scrollable-start='bottom'>
+                              <!--<div class='scrollable' data-scrollable-height='300' data-scrollable-start='bottom'>-->
+                              <div class="scrollable" data-scrollable-height="300" data-scrollable-start="bottom">
+
                                 <ul class='list-unstyled list-hover list-striped' id="chat_messages">
 
                                 </ul>
@@ -71,4 +73,40 @@
             </div>
           </div>
 
-    
+
+<!-- login user mod -->
+<div class="modal fade" id="modal-puntuacion" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Se dio por resuelto el ticket. Ahora le toca a Ud. !</h4>
+      </div>
+      <div class="modal-body">
+
+      <!-- error login -->
+        <div class="alert alert-success alert-dismissable" id="success_puntos" style="display:none;">
+          <!--<a class="close" data-dismiss="alert" href="#">×
+          </a>-->
+          <i class="icon-ok-sign"></i>
+          Gracias por realizar la encuesta del chat, Regrese Pronto !
+        </div>
+      <!-- fin error login -->
+
+      <form class="form validate-form" id="form-puntuacion" style="margin-bottom: 0;" id="form-login-index" method="post" action="" accept-charset="UTF-8">
+        <div class="form-group">
+          <label for="">Puntuaci&oacute;n</label>
+          <input type="number" data-min="1"  data-max="10" name="star_point"  class="rating" />
+        </div>
+        <div class="form-group">
+          <label for="inputComentario">Sugerencia / Comentario</label>
+          <textarea class="form-control" rows="5" name="comentario" id="inputComentario" placeholder="Ingrese su comentario..."></textarea>
+        </div>
+      </form>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning btn-block btn-lg" id="btn_guardar_star"><i class="icon-star"></i> Guardar Puntuacion !</button>
+    </div>
+  </div>
+</div>
+</div>

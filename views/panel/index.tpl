@@ -40,7 +40,8 @@
                         <div class="icon-question-sign"></div>
                         Iniciados
                       </div>
-                      <div class="actions">                     
+                      <div class="actions">
+                        <a class="btn btn-xs btn-link" id="refresh_iniciados" href="#"><i class="icon-refresh"></i></a>
                         <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
                         </a>
                       </div>
@@ -61,7 +62,8 @@
                         <div class="icon-beer"></div>
                         Progreso
                       </div>
-                      <div class="actions">                     
+                      <div class="actions">
+                      <a class="btn btn-xs btn-link" id="refresh_progreso" href="#"><i class="icon-refresh"></i></a>   
                         <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
                         </a>
                       </div>
@@ -82,7 +84,8 @@
                         <div class="icon-pushpin"></div>
                         Asignados a otro
                       </div>
-                      <div class="actions">                  
+                      <div class="actions">     
+                      <a class="btn btn-xs btn-link" id="refresh_globales" href="#"><i class="icon-refresh"></i></a>             
                         <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
                         </a>
                       </div>

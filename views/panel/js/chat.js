@@ -10,14 +10,19 @@ function timetoDate(tiempo){
 	// will display time in 10:30:23 format
 	return  hours + ':' + minutes + ':' + seconds;
 }
-	var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
-	//var socket=io.connect('http://localhost:3000/');
+	//var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
+	var socket=io.connect('http://localhost:3000/');
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val(),$("#authenticity_name").val());
 	});
 
 	socket.on('bienvenido',function(data){
 		//console.log(data.text);
+	});
+
+	socket.on('writing_end',function(){
+		$('#audio_fb')[0].play();//reproducimos el sonido
+		$("#writing").html('');
 	});
 
 	socket.on('writing',function(message){
@@ -57,19 +62,21 @@ function timetoDate(tiempo){
 
 		});
 		$("#chat_messages").html(html);
-		$("#writing").html('');
     }); 
-
 
 
 	function sendMessage() {
 		socket.emit('insert',$("#message_body").val(),$("#authenticity_ticket").val(),$("#authenticity_name").val());
+		socket.emit('writing_end',$("#authenticity_ticket").val());
     }
     function writing(){
     	socket.emit('writing',$("#authenticity_name").val(),$("#authenticity_ticket").val());
     }
 
     $(function(){
+
+    	$('<audio id="audio_fb"><source src="'+SITE_URL+'public/sound/sound_chat.mp3" type="audio/mpeg"></audio>').appendTo("body");
+    	
     	$("#message_body" ).keypress(function( event ) {
     	  if ( event.which == 13 ) {		  	
 		    event.preventDefault();
@@ -90,12 +97,10 @@ function timetoDate(tiempo){
 		});
 
 		$("#btn_close_ticket").click(function(event) {
-			/* Act on the event */
 			socket.emit('close_ticket','');
 			$.post(BASE_URL+'panel/updateState',
 			{'id' : $("#authenticity_ticket").val(),'state' : 3},
 			 function(data) {
-				/*optional stuff to do after success */
 				window.close();				
 			});
 			event.preventDefault();

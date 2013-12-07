@@ -52,7 +52,7 @@ $(document).ready(function($) {
 
 	$(".btn-progreso").live('click',function(e){
 		var options = "height=600,width=500,scrollTo,resizable=1,scrollbars=1,location=0";
-      	nueva=window.open(BASE_URL+'panel/chat/'+$(this).data('ticket'), 'chat', options);
+      	nueva=window.open(BASE_URL+'panel/chat/'+$(this).data('ticket'), 'chat #'+$(this).data('ticket'), options);
       	e.preventDefault();
 	});
 
@@ -67,6 +67,23 @@ $(document).ready(function($) {
 				globales();
 		});
 		
+		e.preventDefault();
+	});
+
+	//refresh
+	$("#refresh_iniciados").live('click',function(e){
+		$("#iniciados").html(load);
+		iniciados();
+		e.preventDefault();
+	});
+	$("#refresh_progreso").live('click',function(e){
+		$("#progreso").html(load);
+		progreso();
+		e.preventDefault();
+	});
+	$("#refresh_globales").live('click',function(e){
+		$("#globales").html(load);
+		globales();
 		e.preventDefault();
 	});
 

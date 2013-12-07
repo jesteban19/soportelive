@@ -12,7 +12,7 @@ class indexController extends Controller
 		$this->_usuario=$this->loadModel('usuario');
 
 	}
-	public function log(){
+	public function logout(){
 		$this->_ticket->close(Session::get('idticket'));
 		Session::destroy('idticket');
 		$this->redireccionar();
@@ -118,6 +118,11 @@ class indexController extends Controller
 			
 		}else{
 			$ticket=$this->_ticket->get(Session::get('idticket'));
+			if(count($ticket)<=0){
+				echo "Su ticket ha expirado";
+				exit;
+			}
+
 			$data=$this->_ticket->pointRest(Session::get('idticket'),$ticket[0]['usuario']);			
 			if(!is_array($data)){
 				$data['tiempo']=0;

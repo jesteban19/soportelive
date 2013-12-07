@@ -33,3 +33,9 @@
 
 .wysihtml5-sandbox {
   box-sizing: border-box; }
+
+.rating-input{
+  color: #f3ca2f;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 4em;
+}

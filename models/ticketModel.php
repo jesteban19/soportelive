@@ -47,6 +47,17 @@ class ticketModel extends Model
 			);
 	}
 
+	public function addRating($id,$star_point,$comentario){
+		$data=$this->_db->prepare(
+			"update ticket set comentario=:comentario,puntos=:puntos where idticket=:id"
+			);
+		$data->execute(array(
+			':comentario' => $comentario,
+			':puntos' => $star_point,
+			':id' => $id
+			));
+	}
+
 	public function getId($id){
 		$data=$this->_db->query(
 			"select usuario.idusuario,usuario.usuario,

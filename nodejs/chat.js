@@ -88,6 +88,11 @@ io.on('connection',function(socket){
 		socket.in(socket.ticket).broadcast.emit('writing',user);
 
 	});
+
+	socket.on('writing_end',function(){
+		socket.in(socket.ticket).broadcast.emit('writing_end');
+	});
+
 	socket.on('insert',function(msg,tick,nombre){
 		if(tick==undefined)
 			tick=0;

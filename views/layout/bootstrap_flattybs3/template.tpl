@@ -7,11 +7,6 @@
     <meta content='text/html;charset=utf-8' http-equiv='content-type'>
     <meta content='Flat administration template for Twitter Bootstrap. Twitter Bootstrap 3 template with Ruby on Rails support.' name='description'>
     <link href='{$_layoutParams.ruta_img}meta_icons/favicon.ico' rel='shortcut icon' type='image/x-icon'>
-    <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon.png' rel='apple-touch-icon-precomposed'>
-    <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-57x57.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
-    <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-72x72.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
-    <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-114x114.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-    <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-144x144.png' rel='apple-touch-icon-precomposed' sizes='144x144'>
     <!-- / START - page related stylesheets [optional] -->
     
     <!-- / END - page related stylesheets [optional] -->
@@ -21,6 +16,7 @@
     <link href="{$_layoutParams.ruta_css}light-theme.css" media="all" id="color-settings-body-color" rel="stylesheet" type="text/css" />
     <!-- / coloring file [optional] (if you are going to use custom contrast color) -->
     <link href="{$_layoutParams.ruta_css}theme-colors.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="{$_layoutParams.ruta_css}demo.css" media="all" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]>
       <script src="{$_layoutParams.ruta_js}ie/html5shiv.js" type="text/javascript"></script>
       <script src="{$_layoutParams.ruta_js}ie/respond.min.js" type="text/javascript"></script>
@@ -39,167 +35,6 @@
           <i class='icon-reorder'></i>
         </a>
         <ul class='nav'>
-          <li class='dropdown light only-icon'>
-            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-              <i class='icon-cog'></i>
-            </a>
-            <ul class='dropdown-menu color-settings'>
-              <li class='color-settings-body-color'>
-                <div class='color-title'>Change body color</div>
-                <a data-change-to='assets/stylesheets/light-theme.css' href='#'>
-                  Light
-                  <small>(default)</small>
-                </a>
-                <a data-change-to='assets/stylesheets/dark-theme.css' href='#'>
-                  Dark
-                </a>
-                <a data-change-to='assets/stylesheets/dark-blue-theme.css' href='#'>
-                  Dark blue
-                </a>
-              </li>
-              <li class='divider'></li>
-              <li class='color-settings-contrast-color'>
-                <div class='color-title'>Change contrast color</div>
-                            <a data-change-to="contrast-red" href="#"><i class='icon-cog text-red'></i>
-                Red
-                <small>(default)</small>
-                </a>
-    
-                            <a data-change-to="contrast-blue" href="#"><i class='icon-cog text-blue'></i>
-                Blue
-                </a>
-    
-                            <a data-change-to="contrast-orange" href="#"><i class='icon-cog text-orange'></i>
-                Orange
-                </a>
-    
-                            <a data-change-to="contrast-purple" href="#"><i class='icon-cog text-purple'></i>
-                Purple
-                </a>
-    
-                            <a data-change-to="contrast-green" href="#"><i class='icon-cog text-green'></i>
-                Green
-                </a>
-    
-                            <a data-change-to="contrast-muted" href="#"><i class='icon-cog text-muted'></i>
-                Muted
-                </a>
-    
-                            <a data-change-to="contrast-fb" href="#"><i class='icon-cog text-fb'></i>
-                Facebook
-                </a>
-    
-                            <a data-change-to="contrast-dark" href="#"><i class='icon-cog text-dark'></i>
-                Dark
-                </a>
-    
-                            <a data-change-to="contrast-pink" href="#"><i class='icon-cog text-pink'></i>
-                Pink
-                </a>
-    
-                            <a data-change-to="contrast-grass-green" href="#"><i class='icon-cog text-grass-green'></i>
-                Grass green
-                </a>
-    
-                            <a data-change-to="contrast-sea-blue" href="#"><i class='icon-cog text-sea-blue'></i>
-                Sea blue
-                </a>
-    
-                            <a data-change-to="contrast-banana" href="#"><i class='icon-cog text-banana'></i>
-                Banana
-                </a>
-    
-                            <a data-change-to="contrast-dark-orange" href="#"><i class='icon-cog text-dark-orange'></i>
-                Dark orange
-                </a>
-    
-                            <a data-change-to="contrast-brown" href="#"><i class='icon-cog text-brown'></i>
-                Brown
-                </a>
-    
-              </li>
-            </ul>
-          </li>
-          <li class='dropdown medium only-icon widget'>
-            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-              <i class='icon-rss'></i>
-              <div class='label'>5</div>
-            </a>
-            <ul class='dropdown-menu'>
-              <li>
-                <a href='#'>
-                  <div class='widget-body'>
-                    <div class='pull-left icon'>
-                      <i class='icon-user text-success'></i>
-                    </div>
-                    <div class='pull-left text'>
-                      John Doe signed up
-                      <small class='text-muted'>just now</small>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class='divider'></li>
-              <li>
-                <a href='#'>
-                  <div class='widget-body'>
-                    <div class='pull-left icon'>
-                      <i class='icon-inbox text-error'></i>
-                    </div>
-                    <div class='pull-left text'>
-                      New Order #002
-                      <small class='text-muted'>3 minutes ago</small>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class='divider'></li>
-              <li>
-                <a href='#'>
-                  <div class='widget-body'>
-                    <div class='pull-left icon'>
-                      <i class='icon-comment text-warning'></i>
-                    </div>
-                    <div class='pull-left text'>
-                      America Leannon commented Flatty with veeery long text.
-                      <small class='text-muted'>1 hour ago</small>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class='divider'></li>
-              <li>
-                <a href='#'>
-                  <div class='widget-body'>
-                    <div class='pull-left icon'>
-                      <i class='icon-user text-success'></i>
-                    </div>
-                    <div class='pull-left text'>
-                      Jane Doe signed up
-                      <small class='text-muted'>last week</small>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class='divider'></li>
-              <li>
-                <a href='#'>
-                  <div class='widget-body'>
-                    <div class='pull-left icon'>
-                      <i class='icon-inbox text-error'></i>
-                    </div>
-                    <div class='pull-left text'>
-                      New Order #001
-                      <small class='text-muted'>1 year ago</small>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class='widget-footer'>
-                <a href='#'>All notifications</a>
-              </li>
-            </ul>
-          </li>
           <li class='dropdown dark user-menu'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
               <img width="23" height="23" alt="{$datos.name}" src="{$_layoutParams.ruta_img}avatar.jpg" />
@@ -208,22 +43,16 @@
             </a>
             <ul class='dropdown-menu'>
               <li>
-                <a href='user_profile.html'>
-                  <i class='icon-user'></i>
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a href='user_profile.html'>
+                <a href='#'>
                   <i class='icon-cog'></i>
-                  Settings
+                  Foro
                 </a>
               </li>
               <li class='divider'></li>
               <li>
-                <a href='sign_in.html'>
+                <a href='{$_layoutParams.base_url}index/logout'>
                   <i class='icon-signout'></i>
-                  Sign out
+                  Cancelar Chat
                 </a>
               </li>
             </ul>
@@ -330,7 +159,7 @@
     <script src="{$_layoutParams.ruta_js}plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/timeago/jquery.timeago.js" type="text/javascript"></script>
-
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/rating/bootstrap-rating-input.min"></script>
     <!-- load Js -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}
     {foreach item=js from=$_layoutParams.js}

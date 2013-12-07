@@ -102,7 +102,7 @@ class View extends Smarty
 				if(is_readable($rutaTemplate))
 					$this->display($rutaTemplate);
 				else
-					throw new Exception("Error al mostrar el template '$template'");
+					throw new Exception("Error al mostrar el template '$rutaTemplate'");
 			}else{
 				$this->display('template.tpl');
 			}
