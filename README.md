@@ -5,3 +5,6 @@ soporte de chat usando node.js + php mvc + pdo : mysql
 
 ________________________________________________________
 se usa el sistema php como mvc , framework creado por esteban.programador@gmail.com
+
+
+actualizado desde mi pc ....
