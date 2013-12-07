@@ -48,7 +48,7 @@
             </a>
             <ul class='dropdown-menu'>
               <li>
-                <a href='#'>
+                <a href='{$_layoutParams.base_url}foro'>
                   <i class='icon-cog'></i>
                   Foro
                 </a>
@@ -73,103 +73,26 @@
       <nav class='main-nav-fixed' id='main-nav'>
         <div class='navigation'>
           <div class='search'>
-            <form action='http://www.bublinastudio.com/flattybs3/search_results.html' method='get'>
+            <form action='{$_layoutParams.base_url}/foro' method='get'>
               <div class='search-wrapper'>
-                <input value="" class="search-query form-control" placeholder="Search..." autocomplete="off" name="q" type="text" />
+                <input value="" class="search-query form-control" placeholder="Buscar en el foro" autocomplete="off" name="q" type="text" />
                 <button class='btn btn-link icon-search' name='button' type='submit'></button>
               </div>
             </form>
           </div>
           <ul class='nav nav-stacked'>
             <li class=''>
-              <a href='index-2.html'>
-                <i class='icon-dashboard'></i>
-                <span>Dashboard</span>
+              <a href='{$_layoutParams.base_url}foro'>
+                <i class='icon-bullhorn'></i>
+                <span>Foro</span>
               </a>
             </li>
-            
-            <li>
-              <a class='dropdown-collapse ' href='#'>
-                <i class='icon-book'></i>
-                <span>Example pages</span>
-                <i class='icon-angle-down angle-down'></i>
+            <li class=''>
+              <a href='{$_layoutParams.base_url}panel/logout'>
+                <i class='icon-signout'></i>
+                <span>Salir</span>
               </a>
-              <ul class='nav nav-stacked'>
-                <li class=''>
-                  <a href='invoice.html'>
-                    <i class='icon-money'></i>
-                    <span>Invoice</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='gallery.html'>
-                    <i class='icon-picture'></i>
-                    <span>Gallery</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='timeline.html'>
-                    <i class='icon-time'></i>
-                    <span>Timeline</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='pricing_tables.html'>
-                    <i class='icon-table'></i>
-                    <span>Pricing tables</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='user_profile.html'>
-                    <i class='icon-user'></i>
-                    <span>User profile</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='err404.html' target='_blank'>
-                    <i class='icon-question-sign'></i>
-                    <span>404 Error</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='err500.html' target='_blank'>
-                    <i class='icon-cogs'></i>
-                    <span>500 Error</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='sign_in.html' target='_blank'>
-                    <i class='icon-signin'></i>
-                    <span>Sign in</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='faq.html'>
-                    <i class='icon-bullhorn'></i>
-                    <span>FAQ</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='orders.html'>
-                    <i class='icon-inbox'></i>
-                    <span>Orders</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='search_results.html'>
-                    <i class='icon-search'></i>
-                    <span>Search results</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='blank.html'>
-                    <i class='icon-circle-blank'></i>
-                    <span>Blank page</span>
-                  </a>
-                </li>
-              </ul>
             </li>
-            
           </ul>
         </div>
       </nav>

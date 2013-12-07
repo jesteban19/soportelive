@@ -11,21 +11,7 @@
                       
                     </h1>
                     <div class='pull-right'>
-                      <ul class='breadcrumb'>
-                        <li>
-                          <a href='index-2.html'>
-                            <i class='icon-bar-chart'></i>
-                          </a>
-                        </li>
-                        <li class='separator'>
-                          <i class='icon-angle-right'></i>
-                        </li>
-                        <li>Components</li>
-                        <li class='separator'>
-                          <i class='icon-angle-right'></i>
-                        </li>
-                        <li class='active'>Chats</li>
-                      </ul>
+      
                     </div>
                   </div>
                 </div>

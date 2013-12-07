@@ -10,8 +10,8 @@ function timetoDate(tiempo){
 	// will display time in 10:30:23 format
 	return  hours + ':' + minutes + ':' + seconds;
 }
-	//var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
-	var socket=io.connect('http://localhost:3000/');
+	var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
+	//var socket=io.connect('http://localhost:3000/');
 
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val());

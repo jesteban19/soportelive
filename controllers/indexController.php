@@ -30,6 +30,7 @@ class indexController extends Controller
 			$data['idrole']=$log['idrole'];
 			$data['nombre']=$log['nombre'];
 			$data['idusuario']=$log['idUsuario'];
+			$this->_usuario->activeOn($log['idUsuario'],1);
 			Session::set('login',$data);
 			echo true;
 		}else{
@@ -115,7 +116,8 @@ class indexController extends Controller
 	public function nextSteep()
 	{	
 		if(!Session::get('idticket')){
-			
+			//si es que no se creo es por que no hay usuarios online o paso algo...
+			$this->_view->renderizar('offline',false,false,'template_login');
 		}else{
 			$ticket=$this->_ticket->get(Session::get('idticket'));
 			if(count($ticket)<=0){

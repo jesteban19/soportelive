@@ -30,7 +30,8 @@ try{
 	
 }
 Catch(Exception $e){
-	echo $e->GetMessage();
+	echo "<h1>".$e->GetMessage()."</h1><hr/><a href='".BASE_URL."' />Regresar al Inicio</a>";
+
 }
 
 

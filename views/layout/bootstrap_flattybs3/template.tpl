@@ -58,10 +58,10 @@
             </ul>
           </li>
         </ul>
-        <form action='http://www.bublinastudio.com/flattybs3/search_results.html' class='navbar-form navbar-right hidden-xs' method='get'>
+        <form action='{$_layoutParams.base_url}/foro' class='navbar-form navbar-right hidden-xs' method='get'>
           <button class='btn btn-link icon-search' name='button' type='submit'></button>
           <div class='form-group'>
-            <input value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" name="q" type="text" />
+            <input value="" class="form-control" placeholder="Buscar en el foro" autocomplete="off" id="q_header" name="q" type="text" />
           </div>
         </form>
       </nav>
@@ -74,36 +74,26 @@
       <nav class='main-nav-fixed' id='main-nav'>
         <div class='navigation'>
           <div class='search'>
-            <form action='http://www.bublinastudio.com/flattybs3/search_results.html' method='get'>
+            <form action='{$_layoutParams.base_url}/foro' method='get'>
               <div class='search-wrapper'>
-                <input value="" class="search-query form-control" placeholder="Search..." autocomplete="off" name="q" type="text" />
+                <input value="" class="search-query form-control" placeholder="Buscar en el foro" autocomplete="off" name="q" type="text" />
                 <button class='btn btn-link icon-search' name='button' type='submit'></button>
               </div>
             </form>
           </div>
           <ul class='nav nav-stacked'>
             <li class=''>
-              <a href='index-2.html'>
-                <i class='icon-dashboard'></i>
-                <span>Dashboard</span>
+              <a href='{$_layoutParams.base_url}foro'>
+                <i class='icon-bullhorn'></i>
+                <span>Buscar en el foro</span>
               </a>
             </li>
-            
-            <li>
-              <a class='dropdown-collapse ' href='#'>
-                <i class='icon-book'></i>
-                <span>Example pages</span>
-                <i class='icon-angle-down angle-down'></i>
+            <li class=''>
+              <a href='{$_layoutParams.base_url}index/logout'>
+                <i class='icon-signout'></i>
+                <span>Cancelar Chat</span>
               </a>
-              <ul class='nav nav-stacked'>
-                <li class=''>
-                  <a href='invoice.html'>
-                    <i class='icon-money'></i>
-                    <span>Invoice</span>
-                  </a>
-              </ul>
             </li>
-            
           </ul>
         </div>
       </nav>

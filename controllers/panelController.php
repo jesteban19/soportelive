@@ -4,13 +4,16 @@
 class panelController extends Controller
 {
 	private $_ticket;
+	private $_usuario;
 	public function __construct(){
 		parent::__construct();
+
 		if(!Session::get('login')){
 			$this->redireccionar();
 		}
 
 		$this->_ticket=$this->loadModel('ticket');
+		$this->_usuario=$this->loadModel('usuario');
 	}
 
 	public function index(){
@@ -80,6 +83,8 @@ class panelController extends Controller
 	}
 
 	public function logout(){
+		$login=Session::get('login');
+		$this->_usuario->activeOff($login['idusuario'],0);
 		Session::destroy('login');
 		$this->redireccionar();
 	}

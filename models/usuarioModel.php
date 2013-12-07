@@ -15,6 +15,27 @@ class usuarioModel extends Model{
 		$data->execute(array($user,$pass));
 		return $data->fetch() ;
 	}
+
+	public function activeOff($user,$active){
+		$data=$this->_db->prepare(
+			"update usuario set active=0 where idusuario=:id"
+			);
+		$data->execute(array(
+			':id' => $user
+			));
+
+	}
+
+	public function activeOn($user,$active){
+		$data=$this->_db->prepare(
+			"update usuario set active=1 where idusuario=:id"
+			);
+		$data->execute(array(
+			':id' => $user
+			));
+
+	}
+
 }
 
 
