@@ -51,8 +51,9 @@ $(document).ready(function($) {
 	});
 
 	$(".btn-progreso").live('click',function(e){
-		e.preventDefault();
-
+		var options = "height=600,width=500,scrollTo,resizable=1,scrollbars=1,location=0";
+      	nueva=window.open(BASE_URL+'panel/chat/'+$(this).data('ticket'), 'chat', options);
+      	e.preventDefault();
 	});
 
 	$(".btn-globales").live('click',function(e){

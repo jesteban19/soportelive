@@ -48,7 +48,7 @@ io.on('connection',function(socket){
 
 	function get(){
 		client.query(
-					"SELECT mensaje,UNIX_TIMESTAMP(NOW())'timestamp',timestap'fecha',UNIX_TIMESTAMP(timestap)'fecha_stamp' FROM chat where idticket="+socket.ticket+" ORDER BY idchat DESC LIMIT 0 , 10",
+					"SELECT nombre,mensaje,UNIX_TIMESTAMP(NOW())'timestamp',timestap'fecha',UNIX_TIMESTAMP(timestap)'fecha_stamp' FROM chat where idticket="+socket.ticket+" ORDER BY idchat DESC LIMIT 0 , 10",
 					function  selectUsuario(err,results,field)
 					{
 						if(err){
@@ -78,7 +78,9 @@ io.on('connection',function(socket){
 		get();
 	});
 
-
+	socket.on('close_ticket',function(){
+		socket.in(socket.ticket).broadcast.emit('close_ticket','closeee');
+	});
 	socket.on('writing',function(user,tick){
 		if(tick==undefined)
 			tick=0;
@@ -86,12 +88,12 @@ io.on('connection',function(socket){
 		socket.in(socket.ticket).broadcast.emit('writing',user);
 
 	});
-	socket.on('insert',function(msg,tick){
+	socket.on('insert',function(msg,tick,nombre){
 		if(tick==undefined)
 			tick=0;
 		socket.broadcast.emit('writing_terminate','');
 		client.query(
-			"insert into chat (mensaje,timestap,idticket)values('"+htmlEncode(msg)+"',now(),"+tick+");"
+			"insert into chat (mensaje,timestap,idticket,nombre)values('"+htmlEncode(msg)+"',now(),"+tick+",'"+htmlEncode(nombre)+"');"
 			,function(err,results,field){
 				if(err){
 					console.log("error :" + err.message);

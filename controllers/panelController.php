@@ -70,6 +70,15 @@ class panelController extends Controller
 		$this->_ticket->updateChange($this->getInt('id'),$login['idusuario'],2);
 	}
 
+	public function chat($ticket){
+		$this->_view->setJs(array('socket.io','chat'));
+		$login=Session::get('login');
+		$this->_view->assign('titulo','Chat #'.$ticket." | Sistema Chat en Vivo! V 0.1");
+		$this->_view->assign('login',$login);
+		$this->_view->assign('ticket',$ticket);
+		$this->_view->renderizar('chat',false,'chat');
+	}
+
 	public function logout(){
 		Session::destroy('login');
 		$this->redireccionar();

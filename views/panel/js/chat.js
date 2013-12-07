@@ -12,9 +12,8 @@ function timetoDate(tiempo){
 }
 	var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
 	//var socket=io.connect('http://localhost:3000/');
-
 	socket.on('connect',function(){
-		socket.emit('adduser',$("#authenticity_ticket").val());
+		socket.emit('adduser',$("#authenticity_ticket").val(),$("#authenticity_name").val());
 	});
 
 	socket.on('bienvenido',function(data){
@@ -23,10 +22,6 @@ function timetoDate(tiempo){
 
 	socket.on('writing',function(message){
 		$("#writing").html('<b>'+message+'</b> esta escribiendo...');
-	});
-
-	socket.on('close_ticket',function(e){
-		console.log("se cerro");
 	});
 
 	socket.on('message', function(message){
@@ -73,6 +68,7 @@ function timetoDate(tiempo){
     function writing(){
     	socket.emit('writing',$("#authenticity_name").val(),$("#authenticity_ticket").val());
     }
+
     $(function(){
     	$("#message_body" ).keypress(function( event ) {
     	  if ( event.which == 13 ) {		  	
@@ -93,5 +89,15 @@ function timetoDate(tiempo){
 			$("#message_body").val('');
 		});
 
-		
+		$("#btn_close_ticket").click(function(event) {
+			/* Act on the event */
+			socket.emit('close_ticket','');
+			$.post(BASE_URL+'panel/updateState',
+			{'id' : $("#authenticity_ticket").val(),'state' : 3},
+			 function(data) {
+				/*optional stuff to do after success */
+				window.close();				
+			});
+			event.preventDefault();
+		});
     });
