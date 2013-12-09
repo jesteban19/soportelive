@@ -89,8 +89,8 @@ io.on('connection',function(socket){
 
 	});
 
-	socket.on('writing_end',function(){
-		socket.in(socket.ticket).broadcast.emit('writing_end');
+	socket.on('writing_end',function(id,name){
+		socket.in(socket.ticket).broadcast.emit('writing_end',name);
 	});
 
 	socket.on('insert',function(msg,tick,nombre){

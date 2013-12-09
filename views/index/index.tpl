@@ -68,7 +68,6 @@
         </div>
       </div>
     </div>
-
 <!-- login user mod -->
 <div class="modal fade" id="modal-login" tabindex="-1" style="display: none;" aria-hidden="true">
   <div class="modal-dialog">

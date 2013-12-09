@@ -1,17 +1,26 @@
-function timetoDate(tiempo){
-	var date = new Date(tiempo*1000);
-	// hours part from the timestamp
-	var hours = date.getHours();
-	// minutes part from the timestamp
-	var minutes = date.getMinutes();
-	// seconds part from the timestamp
-	var seconds = date.getSeconds();
+	var titleDoc=document.title;
+	var timetitle=null;
+	var timetitleClear=null;
+	var nombre='';
+	function timetoDate(tiempo){
+		var date = new Date(tiempo*1000);
+		// hours part from the timestamp
+		var hours = date.getHours();
+		// minutes part from the timestamp
+		var minutes = date.getMinutes();
+		// seconds part from the timestamp
+		var seconds = date.getSeconds();
 
-	// will display time in 10:30:23 format
-	return  hours + ':' + minutes + ':' + seconds;
-}
-	var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
-	//var socket=io.connect('http://localhost:3000/');
+		// will display time in 10:30:23 format
+		return  hours + ':' + minutes + ':' + seconds;
+	}
+	
+	var animateTitle=function(){
+		document.title=nombre+" dice : ";
+	};
+
+	//var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
+	var socket=io.connect('http://localhost:3000/');
 
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val());
@@ -25,9 +34,12 @@ function timetoDate(tiempo){
 		$("#writing").html('<b>'+message+'</b> esta escribiendo...');
 	});
 
-	socket.on('writing_end',function(){
+	socket.on('writing_end',function(name){
 		$('#audio_fb')[0].play();//reproducimos el sonido
 		$("#writing").html('');
+		nombre=name;
+		//$.jGrowl("holaaaaaaaa");
+		setTimeout(animateTitle,500);
 	});
 
 	socket.on('close_ticket',function(e){
@@ -76,7 +88,7 @@ function timetoDate(tiempo){
 
 	function sendMessage() {
 		socket.emit('insert',$("#message_body").val(),$("#authenticity_ticket").val(),$("#authenticity_name").val());
-		socket.emit('writing_end',$("#authenticity_ticket").val());
+		socket.emit('writing_end',$("#authenticity_ticket").val(),$("#authenticity_name").val());
     }
     function writing(){
     	socket.emit('writing',$("#authenticity_name").val(),$("#authenticity_ticket").val());
@@ -96,7 +108,10 @@ function timetoDate(tiempo){
 
 		  if($(this).val().length>0)
 		  	writing();
+		}).focusin(function(event) {
+			document.title=titleDoc;
 		});
+
 		$(".btn-success[type='submit']").click(function(e){
 			e.preventDefault();
 			sendMessage();

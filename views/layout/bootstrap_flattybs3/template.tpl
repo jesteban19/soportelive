@@ -2,13 +2,15 @@
 <html>
 
 <head>
+    <!--http://www.bublinastudio.com/flattybs3/-->
     <title>{$titulo|default:'Sin titulo'}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta content='text/html;charset=utf-8' http-equiv='content-type'>
     <meta content='Flat administration template for Twitter Bootstrap. Twitter Bootstrap 3 template with Ruby on Rails support.' name='description'>
     <link href='{$_layoutParams.ruta_img}meta_icons/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+
     <!-- / START - page related stylesheets [optional] -->
-    
+    <link href='{$_layoutParams.ruta_css}plugins/jgrowl/jquery.jgrowl.min.css' media="all" rel="stylesheet" type="text/css">
     <!-- / END - page related stylesheets [optional] -->
     <!-- / bootstrap [required] -->
     <link href="{$_layoutParams.ruta_css}bootstrap/bootstrap.css" media="all" rel="stylesheet" type="text/css" />
@@ -150,6 +152,8 @@
     <script src="{$_layoutParams.ruta_js}plugins/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/timeago/jquery.timeago.js" type="text/javascript"></script>
     <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/rating/bootstrap-rating-input.min.js"></script>
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/jgrowl/jquery.jgrowl.min.js"></script>
+    
     <!-- load Js -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}
     {foreach item=js from=$_layoutParams.js}

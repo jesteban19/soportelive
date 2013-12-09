@@ -1,17 +1,19 @@
-function timetoDate(tiempo){
-	var date = new Date(tiempo*1000);
-	// hours part from the timestamp
-	var hours = date.getHours();
-	// minutes part from the timestamp
-	var minutes = date.getMinutes();
-	// seconds part from the timestamp
-	var seconds = date.getSeconds();
+	var titleDoc=document.title;
 
-	// will display time in 10:30:23 format
-	return  hours + ':' + minutes + ':' + seconds;
-}
-	var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
-	//var socket=io.connect('http://localhost:3000/');
+	function timetoDate(tiempo){
+		var date = new Date(tiempo*1000);
+		// hours part from the timestamp
+		var hours = date.getHours();
+		// minutes part from the timestamp
+		var minutes = date.getMinutes();
+		// seconds part from the timestamp
+		var seconds = date.getSeconds();
+
+		// will display time in 10:30:23 format
+		return  hours + ':' + minutes + ':' + seconds;
+	}
+	//var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
+	var socket=io.connect('http://localhost:3000/');
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val(),$("#authenticity_name").val());
 	});
@@ -20,9 +22,10 @@ function timetoDate(tiempo){
 		//console.log(data.text);
 	});
 
-	socket.on('writing_end',function(){
+	socket.on('writing_end',function(name){
 		$('#audio_fb')[0].play();//reproducimos el sonido
 		$("#writing").html('');
+		document.title=name + " dice : ";
 	});
 
 	socket.on('writing',function(message){
@@ -67,7 +70,7 @@ function timetoDate(tiempo){
 
 	function sendMessage() {
 		socket.emit('insert',$("#message_body").val(),$("#authenticity_ticket").val(),$("#authenticity_name").val());
-		socket.emit('writing_end',$("#authenticity_ticket").val());
+		socket.emit('writing_end',$("#authenticity_ticket").val(),$("#authenticity_name").val());
     }
     function writing(){
     	socket.emit('writing',$("#authenticity_name").val(),$("#authenticity_ticket").val());
@@ -89,7 +92,10 @@ function timetoDate(tiempo){
 
 		  if($(this).val().length>0)
 		  	writing();
+		}).focusin(function(event) {
+			document.title=titleDoc;
 		});
+
 		$(".btn-success[type='submit']").click(function(e){
 			e.preventDefault();
 			sendMessage();
