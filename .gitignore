@@ -1,2 +1,3 @@
 tmp/cache/*
 tmp/template/*
+nodejs/node_modules

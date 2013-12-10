@@ -11,7 +11,7 @@ try{
 
 	require_once APP_PATH.'Config.php';
 	require_once APP_PATH.'Autoload.php';
-	/*require_once APP_PATH.'Request.php';
+/*	require_once APP_PATH.'Request.php';
 	require_once APP_PATH.'Bootstrap.php';
 	require_once APP_PATH.'Controller.php';
 	require_once APP_PATH.'Model.php';
@@ -22,7 +22,6 @@ try{
 	require_once APP_PATH.'Registry.php';
 	*/
 	Session::init();
-
 	$registry=Registry::getInstancia();
 	$registry->_request=new Request();
 	$registry->_db=new Database();

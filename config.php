@@ -3,7 +3,7 @@
 
 /* Parametros de Url y Router */
 define('URL_INDEX', 'index.php/'); 		//dejar vacio  si usas URL_AMIGABLE || index.php/
-define('SITE_URL','http://soportelive.mastabeats.com/'); //tu web http://tusitio.com/path/ para los js,css,img
+define('SITE_URL','http://chat.mastabeats.com/'); //tu web http://tusitio.com/path/ para los js,css,img
 define('BASE_URL',SITE_URL.URL_INDEX); //sirve para los controladores,soporta si no tienes .htaccess
 define('DEFAULT_CONTROLLER','index'); //controlador por defecto Index
 define('DEFAULT_LAYOUT', 'bootstrap_flattybs3'); //template por defecto ,bootstrap,default,etc. |default - bootstrap v.3.00|

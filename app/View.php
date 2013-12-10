@@ -74,6 +74,7 @@ class View extends Smarty
 			'item'=> $item,
 			'base_url' => BASE_URL,
 			'site_url' => SITE_URL,
+			'server_node' => SERVER_NODE,
 			'config' => array(
 					'app_name' => APP_NAME,
 					'app_slogan' => APP_SLOGAN,

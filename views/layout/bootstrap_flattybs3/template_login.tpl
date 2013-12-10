@@ -99,6 +99,7 @@
     <script type="text/javascript">
         var BASE_URL='{$_layoutParams.base_url}';
         var SITE_URL='{$_layoutParams.site_url}';
+        var SERVER_NODE='{$_layoutParams.server_node}';
     </script>
   </body>
 </html>

@@ -19,8 +19,7 @@
 		document.title=nombre+" dice : ";
 	};
 
-	//var socket=io.connect('https://josephesteban-c9-josephesteban.c9.io/');
-	var socket=io.connect('http://localhost:3000/');
+	var socket=io.connect(SERVER_NODE);
 
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val());
