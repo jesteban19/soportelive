@@ -23,6 +23,7 @@
 
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val());
+		$.cookie('chat_init',true);
 	});
 
 	socket.on('bienvenido',function(data){
@@ -92,6 +93,11 @@
     function writing(){
     	socket.emit('writing',$("#authenticity_name").val(),$("#authenticity_ticket").val());
     }
+
+    /**
+     * Document.Ready , iniciando el documento 
+     * @return {void}
+    */
     $(function(){
     	$('<audio id="audio_fb"><source src="'+SITE_URL+'public/sound/sound_chat.mp3" type="audio/mpeg"></audio>').appendTo("body");
 

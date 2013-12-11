@@ -122,7 +122,12 @@
       </section>
     </div>
 
-   
+   <!-- /CONFIGURACIONES [required] -->
+       <script type="text/javascript">
+        var BASE_URL='{$_layoutParams.base_url}';
+        var SITE_URL='{$_layoutParams.site_url}';
+        var SERVER_NODE='{$_layoutParams.server_node}';
+    </script>
     <!-- / jquery [required] -->
     <script src="{$_layoutParams.ruta_js}jquery/jquery.min.js" type="text/javascript"></script>
     <!-- / jquery mobile (for touch events) -->
@@ -153,6 +158,7 @@
     <script src="{$_layoutParams.ruta_js}plugins/timeago/jquery.timeago.js" type="text/javascript"></script>
     <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/rating/bootstrap-rating-input.min.js"></script>
     <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/jgrowl/jquery.jgrowl.min.js"></script>
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/cookie/jquery.cookie.js"></script>
     
     <!-- load Js -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}
@@ -168,11 +174,7 @@
     {/foreach}
     {/if}
     
-    <script type="text/javascript">
-        var BASE_URL='{$_layoutParams.base_url}';
-        var SITE_URL='{$_layoutParams.site_url}';
-        var SERVER_NODE='{$_layoutParams.server_node}';
-    </script>
+
 
   </body>
 </html>

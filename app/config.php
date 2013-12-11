@@ -8,7 +8,7 @@ define('BASE_URL',SITE_URL.URL_INDEX); //sirve para los controladores,soporta si
 define('DEFAULT_CONTROLLER','index'); //controlador por defecto Index
 define('DEFAULT_LAYOUT', 'bootstrap_flattybs3'); //template por defecto ,bootstrap,default,etc. |default - bootstrap v.3.00|
 define('URL_AMIGABLE',false); 		//activar si tienes habilitado el mod_rewrite
-define('SERVER_NODE','https://josephesteban-c9-josephesteban.c9.io/');
+//define('SERVER_NODE','https://josephesteban-c9-josephesteban.c9.io/');
 define('SERVER_NODE','http://localhost:3000/');
 /* Parametros de Url y Router */
 /*define('URL_INDEX', 'index.php/'); 		//dejar vacio  si usas URL_AMIGABLE || index.php/

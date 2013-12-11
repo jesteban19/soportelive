@@ -119,7 +119,12 @@
       </section>
     </div>
 
-   
+    <!-- /CONFIGURACIONES [required] -->
+       <script type="text/javascript">
+        var BASE_URL='{$_layoutParams.base_url}';
+        var SITE_URL='{$_layoutParams.site_url}';
+        var SERVER_NODE='{$_layoutParams.server_node}';
+    </script>
     <!-- / jquery [required] -->
     <script src="{$_layoutParams.ruta_js}jquery/jquery.min.js" type="text/javascript"></script>
     <!-- / jquery mobile (for touch events) -->
