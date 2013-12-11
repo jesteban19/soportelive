@@ -486,11 +486,17 @@
           sdom = "<'row datatables-top'<'col-sm-6'l><'col-sm-6 text-right'f>r>t<'row datatables-bottom'<'col-sm-6'i><'col-sm-6 text-right'p>>";
         }
         dt = $(elem).dataTable({
+          "aaSorting": [[ 0, "desc" ]],
           sDom: sdom,
           sPaginationType: "bootstrap",
           "iDisplayLength": $(elem).data("pagination-records") || 10,
           oLanguage: {
-            sLengthMenu: "_MENU_ records per page"
+            sSearch : 'Buscar por Sistema : ',
+            sLengthMenu: "_MENU_  Filas por pagina",
+            oPaginate : {
+              sNext : 'Siguiente',
+              sPrevious : 'Atras'
+            }
           },
           fnDrawCallback: function(oSettings) {
             $(this).closest('.dataTables_wrapper').find('div[id$=_filter] input').css("width", "200px");

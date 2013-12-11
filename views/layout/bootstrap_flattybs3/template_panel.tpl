@@ -13,7 +13,7 @@
     <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-114x114.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
     <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-144x144.png' rel='apple-touch-icon-precomposed' sizes='144x144'>
     <!-- / START - page related stylesheets [optional] -->
-    
+    <link href="{$_layoutParams.ruta_css}plugins/datatables/bootstrap-datatable.css" media="all" rel="stylesheet" type="text/css" />
     <!-- / END - page related stylesheets [optional] -->
     <!-- / bootstrap [required] -->
     <link href="{$_layoutParams.ruta_css}bootstrap/bootstrap.css" media="all" rel="stylesheet" type="text/css" />
@@ -81,16 +81,29 @@
             </form>
           </div>
           <ul class='nav nav-stacked'>
+           <li class=''>
+              <a href='{$_layoutParams.base_url}panel'>
+                <i class='icon-comments'></i>
+                <span>Panel de Control</span>
+              </a>
+            </li>
+          <!--
             <li class=''>
               <a href='{$_layoutParams.base_url}foro'>
                 <i class='icon-bullhorn'></i>
                 <span>Foro</span>
               </a>
+            </li>-->
+            <li class=''>
+              <a href='{$_layoutParams.base_url}panel/historial'>
+                <i class='icon-bar-chart'></i>
+                <span>Historial</span>
+              </a>
             </li>
             <li class=''>
               <a href='{$_layoutParams.base_url}panel/logout'>
                 <i class='icon-signout'></i>
-                <span>Salir</span>
+                <span>Cerrar Sesion</span>
               </a>
             </li>
           </ul>
@@ -153,6 +166,9 @@
     <script src="{$_layoutParams.ruta_js}plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/timeago/jquery.timeago.js" type="text/javascript"></script>
+    <script src="{$_layoutParams.ruta_js}plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="{$_layoutParams.ruta_js}plugins/datatables/jquery.dataTables.columnFilter.js" type="text/javascript"></script>
+    <script src="{$_layoutParams.ruta_js}plugins/datatables/dataTables.overrides.js" type="text/javascript"></script>
 
     <!-- load Js -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}

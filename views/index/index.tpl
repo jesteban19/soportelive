@@ -43,7 +43,7 @@
                   </form>
                   <div class='text-center'>
                     <hr class='hr-normal'>
-                    <a class="" data-toggle="modal" href="#modal-login" role="button">Acceder con mi cuenta</a>
+                    <a class="" data-toggle="modal" href="#modal-login" role="button"><i class="icon-key"></i> Admin Login</a>
                   </div>
                 </div>
               </div>

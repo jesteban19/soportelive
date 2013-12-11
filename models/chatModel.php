@@ -15,6 +15,14 @@ class ChatModel extends Model{
 		return $data->fetchAll();
 	}
 
+	public function getChat($id){
+		$data=$this->_db->prepare(
+			"select nombre,mensaje,timestap from  chat where idticket=?"
+			);
+		$data->execute(array($id));
+		return $data->fetchAll();
+	}
+
 	
 }
 ?>

@@ -1,5 +1,5 @@
 	var titleDoc=document.title;
-
+	
 	function timetoDate(tiempo){
 		var date = new Date(tiempo*1000);
 		// hours part from the timestamp
@@ -17,10 +17,17 @@
 		socket.emit('adduser',$("#authenticity_ticket").val(),$("#authenticity_name").val());
 	});
 
-	socket.on('bienvenido',function(data){
-		//console.log(data.text);
+	socket.on("waiting",function(count){
+		if(count<2){
+			//bloqueamos el chat
+			$("#modal-bloqued").modal({
+				backdrop : 'static',
+				keyboard : false
+			});
+		}else{
+			$("#modal-bloqued").modal('hide');
+		}
 	});
-
 	socket.on('writing_end',function(name){
 		$('#audio_fb')[0].play();//reproducimos el sonido
 		$("#writing").html('');
@@ -39,6 +46,7 @@
 			// multiplied by 1000 so that the argument is in milliseconds, not seconds
 			
 			//html=html+data.mensaje + ' a las '+formattedTime + '<br/>';
+			var classColor=(data.nombre==$('#authenticity_name').val() ? 'text-contrast' : 'text-danger');
 			var nombre=$("#authenticity_name").val();
 			var body="<li class='message'> " +
 					"<div class='avatar'> " +
@@ -47,7 +55,7 @@
 					"<div class='name-and-time'>" +
 					"<div class='name pull-left'>" +
 					"<small>" +
-					"<a class='text-contrast' href='#''>"+data.nombre+"</a>" +
+					"<a class='"+classColor+"' href='#''>"+data.nombre+"</a>" +
 					"</small>" +
 					"</div>" +
 					"<div class='time pull-right'>" +
@@ -60,10 +68,13 @@
 					"<div class='body'>" +data.mensaje+
 					"</div>" +
 					"</li>";
-			html=html+body;
+			html=body+html;
 
 		});
 		$("#chat_messages").html(html);
+		$(".scrollable").slimScroll({
+              scrollTo: $(".scrollable").data("scrollable-height") + "px"
+         });
     }); 
 
 
@@ -109,5 +120,18 @@
 				window.close();				
 			});
 			event.preventDefault();
+		});
+
+		/*change tiempo estimado*/
+		$("#tiempo_estimado").change(function(){
+			var $div=$(this);
+			$.post(BASE_URL+'panel/updateChangeTime',
+			{
+				'id' : $("#authenticity_ticket").val(),
+				'time' : $div.val()
+			},
+			 function(data) {
+				$div.parent().parent().fadeOut().fadeIn();
+			});
 		});
     });

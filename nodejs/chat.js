@@ -55,16 +55,14 @@ io.on('connection',function(socket){
 							console.log("error :" + err.message);
 							throw err;
 						}
-						sockets.forEach(function (socket) {
-							//socket.emit('message',results);
-						});
+						
 						io.sockets.in(socket.ticket).emit('message',results);
 						//return results;
 					});
 	};
 
 	sockets.push(socket);
-
+	
 	socket.on('adduser',function(msg){
 		if(msg==undefined)
 			msg=0;
@@ -72,9 +70,7 @@ io.on('connection',function(socket){
 		socket.ticket=msg;
 		socket.join(msg);
 		count++;
-		io.sockets.emit('bienvenido',{
-			text : 'TOTAL CONECTADOS ' + count
-		});
+		io.sockets.in(socket.ticket).emit("waiting",io.sockets.clients(socket.ticket).length);
 		get();
 	});
 
@@ -114,11 +110,9 @@ io.on('connection',function(socket){
 		// update list of users in chat, client-side
 		//io.sockets.emit('updateusers', usernames);
 		// echo globally that this client has left
-		count--;
-		socket.broadcast.emit('bienvenido',{
-			text : 'TOTAL CONECTADOS ' +count
-		});
+		count--;		
 		socket.leave(socket.ticket);
+		io.sockets.in(socket.ticket).emit("waiting",io.sockets.clients(socket.ticket).length);
 	});
 });
 

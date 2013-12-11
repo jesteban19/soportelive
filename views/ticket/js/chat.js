@@ -2,6 +2,7 @@
 	var timetitle=null;
 	var timetitleClear=null;
 	var nombre='';
+	var close_ticket=false;
 	function timetoDate(tiempo){
 		var date = new Date(tiempo*1000);
 		// hours part from the timestamp
@@ -23,11 +24,28 @@
 
 	socket.on('connect',function(){
 		socket.emit('adduser',$("#authenticity_ticket").val());
-		$.cookie('chat_init',true);
-	});
 
-	socket.on('bienvenido',function(data){
-		//console.log(data.text);
+		if($.cookie('chat_init')==undefined){
+			var _message="Bienvenido al chat del Soporte de ZeusIntranet. ¿En qué puedo ayudarle el día de Hoy?";
+			socket.emit('insert',_message,$("#authenticity_ticket").val(),"System");
+			$.cookie('chat_init',true);	
+		}
+	});
+	/**
+	 * depues de conectar nos manda esta funcion para saber si ya hay mas de 2 conectados!
+	 * @param  {[object]} total de conectados
+	 * @return {[void]} void
+	 */
+	socket.on("waiting",function(count){
+		if(count<2){
+			//bloqueamos el chat
+			$("#modal-bloqued").modal({
+				backdrop : 'static',
+				keyboard : false
+			});
+		}else{
+			$("#modal-bloqued").modal('hide');
+		}
 	});
 
 	socket.on('writing',function(message){
@@ -43,9 +61,10 @@
 	});
 
 	socket.on('close_ticket',function(e){
-		$('#modal-puntuacion').modal({
+		close_ticket=true;
+		$('#modal-terminado').modal({
 		  backdrop: 'static',
-		  keyboard: true
+		  keyboard: false
 		});
 	});
 
@@ -57,6 +76,7 @@
 			// multiplied by 1000 so that the argument is in milliseconds, not seconds
 			
 			//html=html+data.mensaje + ' a las '+formattedTime + '<br/>';
+			var classColor=(data.nombre==$('#authenticity_name').val() ? 'text-contrast' : 'text-danger');
 			var nombre=$("#authenticity_name").val();
 			var body="<li class='message'> " +
 					"<div class='avatar'> " +
@@ -65,7 +85,7 @@
 					"<div class='name-and-time'>" +
 					"<div class='name pull-left'>" +
 					"<small>" +
-					"<a class='text-contrast' href='#''>"+data.nombre+"</a>" +
+					"<a class='"+classColor+"' href='#''>"+data.nombre+" dice :</a>" +
 					"</small>" +
 					"</div>" +
 					"<div class='time pull-right'>" +
@@ -78,10 +98,13 @@
 					"<div class='body'>" +data.mensaje+
 					"</div>" +
 					"</li>";
-			html=html+body;
+			html=body+html;
 
 		});
 		$("#chat_messages").html(html);
+		$(".scrollable").slimScroll({
+              scrollTo: $(".scrollable").data("scrollable-height") + "px"
+         });
     }); 
 
 
@@ -100,6 +123,7 @@
     */
     $(function(){
     	$('<audio id="audio_fb"><source src="'+SITE_URL+'public/sound/sound_chat.mp3" type="audio/mpeg"></audio>').appendTo("body");
+
 
     	$("#message_body" ).keypress(function( event ) {
     	  if ( event.which == 13 ) {		  	
@@ -126,7 +150,24 @@
 		var redirect=function(){
 			location.href=BASE_URL;
 		}
+
+		$("#btn-close-ticket").click(function(event) {
+			/* CLOSE MODALS */
+			$("#message_body").attr('disabled','disabled').addClass('disabled');
+			$("#modal-bloqued").modal('hide');
+			$("#modal-terminado").modal('hide');
+		});
+		$("a.close_ticket").click(function(e) {
+			e.preventDefault();
+			/* para mostrar la puntuacion */
+			$('#modal-puntuacion').modal({
+		  		backdrop: 'static',
+		  		keyboard: true
+			});
+		});
+
 		$("#btn_guardar_star").click(function(event) {
+			$(this).hide();
 			var puntos=0;
 			if($("#form-puntuacion input[name=star_point]").val()!='')
 				puntos=$("#form-puntuacion input[name=star_point]").val();
@@ -138,11 +179,40 @@
 					'comentario' :  $("#form-puntuacion textarea[name=comentario]").val()
 				}
 				, function(data) {
+					$.removeCookie('chat_init');
 					$("#success_puntos").fadeIn();
 					setTimeout(redirect,2000);
 				});
 
+			if($("#form-puntuacion textarea[name=email]").val()!=''){
+				/*Enviamos el correo en un handle aparte*/
+				$.post(BASE_URL+'ticket/sendChat',
+				{
+				 	'email'		: $("#form-puntuacion input[name=email]").val(),
+				 	'ticket'	: $("#authenticity_ticket").val()
+				},function(data) {					
+				});
+			}
 			event.preventDefault();
 		});
-		
+
+		/* confirmacion de mensaje al cerrar la ventana para cerrar el ticket y el chat*/
+		$(window).on("beforeunload", function(eEvent) {
+			if(!close_ticket)
+				return "Cancelaras el Chat?, si lo cierras no podras puntuar!";
+		});
+
+		$(window).on('unload', function(){
+
+			$.removeCookie('chat_init');
+			$.post(BASE_URL+'panel/updateState',
+			{'id' : $("#authenticity_ticket").val(),'state' : 3},
+			 function(data) {
+								
+			});
+		});
+
+		function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+		// To disable f5
+		$(document).bind("keydown", disableF5);
     });

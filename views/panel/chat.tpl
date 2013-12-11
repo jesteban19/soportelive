@@ -64,11 +64,21 @@
                   </div>
                 </div>
               </div>
-              <!-- MENSAJE DE AVISO O ALGO
+              <!-- MENSAJE DE AVISO O ALGO-->
               <div class='alert alert-info alert-dismissable'>
-                <a class='close' data-dismiss='alert' href='#'>&times;</a>
-                Chats can be placed in various containers. For example one below and one fixed on browser bottom.
-              </div>-->
+              {assign var=time value=$data.tiempo/60}
+              <p>Tiempo Estimado
+                 <select id="tiempo_estimado">
+                  <option value="10" {if $time==10} selected {/if}>10 minutos</option>
+                  <option value="15" {if $time==15} selected {/if}>15 minutos</option>
+                  <option value="30" {if $time==30} selected {/if}>30 minutos</option>
+                  <option value="45" {if $time==45} selected {/if}>45 minutos</option>
+                  <option value="60" {if $time==60} selected {/if}>60 minutos</option>
+                </select>
+              </p>
+              <p><strong>Problema : </strong>{$data.mensaje}</p>
+               
+              </div>
 
              <div class='row'>
                 <div class='col-sm-12'>
@@ -87,7 +97,7 @@
                                         <input type="hidden" id="authenticity_ticket" value="{$ticket}" />
                                         <input name="authenticity_token" type="hidden" />
                                         <input id="authenticity_name" type="hidden" value="{$login.nombre}"/>
-                                        <input class='form-control' id='message_body' autocomplete="off" name='message[body]' placeholder='Type your message here...' type='text'>
+                                        <input class='form-control' id='message_body' autocomplete="off" name='message[body]' placeholder='Ingrese su mensaje aqui...' type='text'>
                               <button class='btn btn-success' type='submit'>
                                 <i class='icon-plus'></i>
                               </button>
@@ -115,6 +125,31 @@
     </div>
     <!-- FIN DE CUERPO -->
 
+<!-- este bloqueara el chat ,cuando haiga un soporte conectado -->
+<div class="modal fade" id="modal-bloqued" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><i class="icon-1x icon-spinner icon-spin"></i> Esperando Cliente...</h4>
+      </div>
+      <div class="modal-body">
+        <p>Espere un tiempo determinado al  <b>Cliente</b>, si no se conecta cierre el ticket!</p>
+        <p class="text-center">&oacute;</p>
+        <p>El cliente puede haber <span class="label label-danger">Terminado</span> el ticket.</p>
+      </div>
+         <div class="modal-footer">
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Variables globales javascript -->
+    <script type="text/javascript">
+        var BASE_URL='{$_layoutParams.base_url}';
+        var SITE_URL='{$_layoutParams.site_url}';
+        var SERVER_NODE='{$_layoutParams.server_node}';
+    </script>
 <!-- / jquery [required] -->
     <script src="{$_layoutParams.ruta_js}jquery/jquery.min.js" type="text/javascript"></script>
     <!-- / jquery mobile (for touch events) -->
@@ -158,10 +193,6 @@
     {/foreach}
     {/if}
     
-    <script type="text/javascript">
-        var BASE_URL='{$_layoutParams.base_url}';
-        var SITE_URL='{$_layoutParams.site_url}';
-    </script>
 
   </body>
 </html>

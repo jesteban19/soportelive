@@ -44,28 +44,28 @@
               <b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
-              <li>
+             <!-- <li>
                 <a href='#'>
                   <i class='icon-cog'></i>
                   Foro
                 </a>
-              </li>
+              </li>-->
               <li class='divider'></li>
               <li>
-                <a href='{$_layoutParams.base_url}index/logout'>
+                <a class='close_ticket' href='{$_layoutParams.base_url}index/logout'>
                   <i class='icon-signout'></i>
-                  Cancelar Chat
+                  Terminar Chat
                 </a>
               </li>
             </ul>
           </li>
         </ul>
-        <form action='{$_layoutParams.base_url}/foro' class='navbar-form navbar-right hidden-xs' method='get'>
+        <!--<form action='{$_layoutParams.base_url}/foro' class='navbar-form navbar-right hidden-xs' method='get'>
           <button class='btn btn-link icon-search' name='button' type='submit'></button>
           <div class='form-group'>
             <input value="" class="form-control" placeholder="Buscar en el foro" autocomplete="off" id="q_header" name="q" type="text" />
           </div>
-        </form>
+        </form>-->
       </nav>
     </header>
     <!-- FIN DEL HEADER -->
@@ -75,25 +75,25 @@
       <div id='main-nav-bg'></div>
       <nav class='main-nav-fixed' id='main-nav'>
         <div class='navigation'>
-          <div class='search'>
+          <!--<div class='search'>
             <form action='{$_layoutParams.base_url}/foro' method='get'>
               <div class='search-wrapper'>
                 <input value="" class="search-query form-control" placeholder="Buscar en el foro" autocomplete="off" name="q" type="text" />
                 <button class='btn btn-link icon-search' name='button' type='submit'></button>
               </div>
             </form>
-          </div>
+          </div>-->
           <ul class='nav nav-stacked'>
-            <li class=''>
+           <!-- <li class=''>
               <a href='{$_layoutParams.base_url}foro'>
                 <i class='icon-bullhorn'></i>
                 <span>Buscar en el foro</span>
               </a>
-            </li>
+            </li>-->
             <li class=''>
-              <a href='{$_layoutParams.base_url}index/logout'>
+              <a class="close_ticket" href='{$_layoutParams.base_url}index/logout'>
                 <i class='icon-signout'></i>
-                <span>Cancelar Chat</span>
+                <span>Terminar Chat</span>
               </a>
             </li>
           </ul>
@@ -112,8 +112,8 @@
                   Copyright © 2013 {$_layoutParams.config.app_company}
                 </div>
                 <div class='col-sm-6 buttons'>
-                  <a class="btn btn-link" href="#">ZeusIntranet</a>
-                  <a class="btn btn-link" href="#">Soporte</a>
+                  <a class="btn btn-link" href="http://www.zeusintranet.com" target="_blank">ZeusIntranet</a>
+                  <a class="btn btn-link" href="http://www.helpdesk.zeusintranet.com" target="_blank">Soporte</a>
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@
     </div>
 
    <!-- /CONFIGURACIONES [required] -->
-       <script type="text/javascript">
+    <script type="text/javascript">
         var BASE_URL='{$_layoutParams.base_url}';
         var SITE_URL='{$_layoutParams.site_url}';
         var SERVER_NODE='{$_layoutParams.server_node}';

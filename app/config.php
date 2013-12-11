@@ -20,7 +20,7 @@ define('URL_AMIGABLE',false); 		//activar si tienes habilitado el mod_rewrite
 */
 /* Parametros de Aplicacion */
 
-define('APP_NAME', 'Framework CodeNeo V.001.1'); //nombre de tu aplicacion
+define('APP_NAME', 'Soporte Live V0.001 | Zeusintranet'); //nombre de tu aplicacion
 define('APP_SLOGAN', 'Framework App Neo'); //nombre de slogan de la web
 define('APP_COMPANY', 'www.Zeusintranet.com'); //nombre de la empresa
 define('SESSION_TIME', 0); //tiempo limite de una session de usuario <bool Session:acceso($level)> | 0 = no expira 

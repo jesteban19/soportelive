@@ -1,5 +1,10 @@
 <?php
 
+
+/**
+ * Select SEC_TO_TIME(TIMESTAMPDIFF(second,'2011-12-01 00:00:05','2011-12-02 12:05:55')) as tiempo_trasncurrido_H_M_S;
+ *  para saber la diferencia segundos , minutos y horas
+ */
 class ticketModel extends Model
 {
 	public function __construct(){
@@ -35,10 +40,31 @@ class ticketModel extends Model
 
 	public function get($id){
 		$data=$this->_db->query(
-			"select idusuario_support'usuario',u.nombre from ticket as t inner join usuario as u on u.idUsuario=t.idUsuario_support where idestado_ticket!=3 and idticket=".$id
+			"select idusuario_support'usuario',u.nombre,tiempo,mensaje from ticket as t inner join usuario as u on u.idUsuario=t.idUsuario_support where idestado_ticket!=3 and idticket=".$id
 			);
 
 		return $data->fetch();
+	}
+
+	public function updateTiempo($id,$tiempo){
+		$data=$this->_db->prepare(
+			"update ticket set tiempo=? where idticket=?"
+			);
+		$data->execute(array($tiempo,$id));
+	}
+
+	public function setTime_init($id){
+		$data=$this->_db->prepare(
+			"update ticket set tiempo_inicio=now() where idticket=? and tiempo_inicio is null"
+			);
+		$data->execute(array($id));
+	}
+
+	public function setTime_end($id){
+		$data=$this->_db->prepare(
+			"update ticket set tiempo_fin=now() where idticket=? and tiempo_fin is null"
+			);
+		$data->execute(array($id));
 	}
 
 	public function close($id){
@@ -165,6 +191,17 @@ class ticketModel extends Model
 			));
 	}
 
+	public function getHistorial(){
+		$data=$this->_db->query(
+			"select t.idticket,s.nombre'colegio',t.nombre,u.nombre'usuario',t.mensaje'problema',t.fecha,floor(t.tiempo/60)'tiempo',et.nombre'estado',IFNULL(t.puntos,-1)'puntos' 
+ 			from ticket as t inner join sistemas as s 
+ 			inner join estado_ticket as et on et.idestado_ticket=t.idestado_ticket 
+ 			inner join usuario as u on u.idusuario=t.idusuario_support 
+  			where t.idsistemas=s.idsistemas 
+  			order by t.idticket desc"
+			);
+		return $data->fetchAll();
+	}
 
 }
 ?>

@@ -5,7 +5,7 @@
     <div class="box-content box-quick-link box-statistic has-popover {if $val.segundos==0 }red{else}muted{/if}-background"
     data-content="{$val.mensaje}" data-placement="bottom" data-title="#{$val.idticket} | {$val.nombre} Dice :" data-original-title="" title="">
     	<h3 class="title text-muted">{$val.segundos} seg</h3>
-    	<small>{if $val.segundos==0}TERMINADO{else}ESPERANDO{/if}</small>
+    	<small>{if $val.segundos==0}LISTO!{else}ESPERANDO{/if}</small>
     	<div class="text-muted icon-time align-right"></div>
 
     	<a href="#" class="btn-iniciado" data-ticket="{$val.idticket}">

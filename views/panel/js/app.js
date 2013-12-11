@@ -51,8 +51,16 @@ $(document).ready(function($) {
 	});
 
 	$(".btn-progreso").live('click',function(e){
+		var idticket=$(this).data('ticket')
+		
+		$.post(BASE_URL+'panel/setTimeInit',
+		 {'id' : idticket},
+		 function(data) {
+			//success update	
+		});
+
 		var options = "height=600,width=500,scrollTo,resizable=1,scrollbars=1,location=0";
-      	nueva=window.open(BASE_URL+'panel/chat/'+$(this).data('ticket'), 'chat #'+$(this).data('ticket'), options);
+	    nueva=window.open(BASE_URL+'panel/chat/'+idticket, 'chat #'+idticket, options);
       	e.preventDefault();
 	});
 
