@@ -14,6 +14,8 @@
     <link href='{$_layoutParams.ruta_img}meta_icons/apple-touch-icon-144x144.png' rel='apple-touch-icon-precomposed' sizes='144x144'>
     <!-- / START - page related stylesheets [optional] -->
     <link href="{$_layoutParams.ruta_css}plugins/datatables/bootstrap-datatable.css" media="all" rel="stylesheet" type="text/css" />
+     <!-- / START - page related stylesheets [optional] -->
+    <link href='{$_layoutParams.ruta_css}plugins/jgrowl/jquery.jgrowl.min.css' media="all" rel="stylesheet" type="text/css">
     <!-- / END - page related stylesheets [optional] -->
     <!-- / bootstrap [required] -->
     <link href="{$_layoutParams.ruta_css}bootstrap/bootstrap.css" media="all" rel="stylesheet" type="text/css" />
@@ -31,7 +33,7 @@
     <!-- COMIENZO DEL HEADER -->
     <header>
       <nav class='navbar navbar-default navbar-fixed-top'>
-        <a class='navbar-brand' href='index-2.html'>
+        <a class='navbar-brand' href='{$_layoutParams.base_url}panel'>
           <img width="81" height="21" class="logo" alt="Flatty" src="{$_layoutParams.ruta_img}logo_zeus.svg" />
           <img width="21" height="21" class="logo-xs" alt="Flatty" src="{$_layoutParams.ruta_img}logo_xs.svg" />
         </a>
@@ -55,7 +57,7 @@
               </li>
               <li class='divider'></li>
               <li>
-                <a href='{$_layoutParams.base_url}panel/logout'>
+                <a href='{$_layoutParams.base_url}panel/logout' class='close_session'>
                   <i class='icon-signout'></i>
                   Cerrar Sesion
                 </a>
@@ -101,7 +103,7 @@
               </a>
             </li>
             <li class=''>
-              <a href='{$_layoutParams.base_url}panel/logout'>
+              <a href='{$_layoutParams.base_url}panel/logout' class='close_session'>
                 <i class='icon-signout'></i>
                 <span>Cerrar Sesion</span>
               </a>
@@ -169,6 +171,7 @@
     <script src="{$_layoutParams.ruta_js}plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/datatables/jquery.dataTables.columnFilter.js" type="text/javascript"></script>
     <script src="{$_layoutParams.ruta_js}plugins/datatables/dataTables.overrides.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}plugins/jgrowl/jquery.jgrowl.min.js"></script>
 
     <!-- load Js -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)}

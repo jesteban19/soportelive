@@ -14,7 +14,7 @@
 	}
 	var socket=io.connect(SERVER_NODE);
 	socket.on('connect',function(){
-		socket.emit('adduser',$("#authenticity_ticket").val(),$("#authenticity_name").val());
+		socket.emit('adduser',$("#authenticity_ticket").val(),$("#authenticity_name").val(),'support');
 	});
 
 	socket.on("waiting",function(count){
@@ -134,4 +134,5 @@
 				$div.parent().parent().fadeOut().fadeIn();
 			});
 		});
+
     });

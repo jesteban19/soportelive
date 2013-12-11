@@ -91,7 +91,7 @@
               </a>
             </li>-->
             <li class=''>
-              <a class="close_ticket" href='{$_layoutParams.base_url}index/logout'>
+              <a class="close_ticket" id="end_chat" href='{$_layoutParams.base_url}index/logout'>
                 <i class='icon-signout'></i>
                 <span>Terminar Chat</span>
               </a>

@@ -13,6 +13,7 @@ var mysql=require('mysql');
 client.query('USE zeususer_soportelive');
 */
 
+
 var client=mysql.createConnection({
 	user : 'root',
 	password : '123',
@@ -23,8 +24,15 @@ var client=mysql.createConnection({
 	client.query('USE mydb');
 
 
-
-
+/*var client=mysql.createConnection({
+	user : 'abarr_neomaster',
+	password : 'peru2013',
+	host : 'mastabeats.com',
+	port : '3306',
+	insecureAuth : true,
+	});
+	client.query('USE abarrera_soportelive');
+*/
 
 
 var http = require('http');
@@ -61,17 +69,24 @@ io.on('connection',function(socket){
 					});
 	};
 
+	//agregamos un socket al array 
 	sockets.push(socket);
-	
-	socket.on('adduser',function(msg){
+
+	//cuando agregamos un usuario  cuando se conecte
+	socket.on('adduser',function(msg,type){
 		if(msg==undefined)
 			msg=0;
 
 		socket.ticket=msg;
 		socket.join(msg);
 		count++;
-		io.sockets.in(socket.ticket).emit("waiting",io.sockets.clients(socket.ticket).length);
+
+		io.sockets.in(socket.ticket).emit("waiting",io.sockets.clients(socket.ticket).length,socket.ticket);
 		get();
+
+		//luego emitimos una notificacion al cpanel para indicar que hay un ticket que ya entro.!
+		if(type=='usuario') //solo mandar la notificacion si son usuarios y no supports entrando al chat
+			socket.broadcast.emit('notificacion_new_user',msg);
 	});
 
 	socket.on('close_ticket',function(){

@@ -1,4 +1,7 @@
+var close_window=false;
+
 $(document).ready(function($) {
+	close_window=false;
 
 	var load="<div class='col-sm-2'><img src='"+SITE_URL+"public/img/ajax-loaders/4.gif'></div>";
 	
@@ -29,12 +32,13 @@ $(document).ready(function($) {
 		});
 	};
 
+
 	$("#iniciados").html(load);
 	$("#progreso").html(load);
 	$("#globales").html(load);
 	iniciados();
-	progreso();
 	globales();
+	progreso();
 
 	//handles de btn
 	$(".btn-iniciado").live('click',function(e){
@@ -94,5 +98,21 @@ $(document).ready(function($) {
 		globales();
 		e.preventDefault();
 	});
+
+	$("a").click(function(e) {
+		e.preventDefault();
+		close_window=true;
+		location.href=$(this).attr('href');
+	});
+
+	/* confirmacion de mensaje al cerrar la ventana para cerrar el ticket y el chat*/
+	$(window).on("beforeunload", function(eEvent) {
+		if(!close_window)
+			return "Deseas cerrar la ventana?, primero cierra tu sesion!. Asi evitaras conflictos con los tickets...";
+	});
+
+	function enabledF5(e) { if ((e.which || e.keyCode) == 116) close_window=true; };
+		// To disable f5
+	$(document).bind("keydown", enabledF5);
 
 });

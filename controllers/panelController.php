@@ -17,7 +17,7 @@ class panelController extends Controller
 	}
 
 	public function index(){
-		$this->_view->setJs(array('app'));
+		$this->_view->setJs(array('app','socket.io','app_notificacion'));
 		$this->_view->assign('titulo','CPANEL | Sistema Chat en Vivo! V 0.1');
 		$login=Session::get('login');
 		$this->_view->assign('nombre',$login['nombre']);

@@ -23,8 +23,7 @@
 	var socket=io.connect(SERVER_NODE);
 
 	socket.on('connect',function(){
-		socket.emit('adduser',$("#authenticity_ticket").val());
-
+		socket.emit('adduser',$("#authenticity_ticket").val(),'usuario');
 		if($.cookie('chat_init')==undefined){
 			var _message="Bienvenido al chat del Soporte de ZeusIntranet. ¿En qué puedo ayudarle el día de Hoy?";
 			socket.emit('insert',_message,$("#authenticity_ticket").val(),"System");
@@ -36,8 +35,8 @@
 	 * @param  {[object]} total de conectados
 	 * @return {[void]} void
 	 */
-	socket.on("waiting",function(count){
-		if(count<2){
+	socket.on("waiting",function(count,id){
+		if(count<2 || id==undefined){
 			//bloqueamos el chat
 			$("#modal-bloqued").modal({
 				backdrop : 'static',
@@ -66,6 +65,13 @@
 		  backdrop: 'static',
 		  keyboard: false
 		});
+		/*Agregando ayuda para el cierre del ticket*/
+			 $("#end_chat").popover({
+			 	 placement: 'bottom',
+			  	 html : true, 
+			   	 title: '<i class="icon-ok"></i> Termine el chat!', 
+			   	 content: 'Termine el chat y <b>califique</b> la atenci&oacute;n.<br>' 
+			}).popover('show').hover(function(){$(this).popover('destroy');});
 	});
 
 	socket.on('message', function(message){
@@ -122,6 +128,8 @@
      * @return {void}
     */
     $(function(){
+    	close_ticket=false;
+
     	$('<audio id="audio_fb"><source src="'+SITE_URL+'public/sound/sound_chat.mp3" type="audio/mpeg"></audio>').appendTo("body");
 
 
@@ -156,17 +164,21 @@
 			$("#message_body").attr('disabled','disabled').addClass('disabled');
 			$("#modal-bloqued").modal('hide');
 			$("#modal-terminado").modal('hide');
+
 		});
+
 		$("a.close_ticket").click(function(e) {
+			close_ticket=true;
 			e.preventDefault();
 			/* para mostrar la puntuacion */
 			$('#modal-puntuacion').modal({
 		  		backdrop: 'static',
-		  		keyboard: true
+		  		keyboard: false
 			});
 		});
 
 		$("#btn_guardar_star").click(function(event) {
+			$.removeCookie('chat_init');
 			$(this).hide();
 			var puntos=0;
 			if($("#form-puntuacion input[name=star_point]").val()!='')
@@ -196,6 +208,7 @@
 			event.preventDefault();
 		});
 
+
 		/* confirmacion de mensaje al cerrar la ventana para cerrar el ticket y el chat*/
 		$(window).on("beforeunload", function(eEvent) {
 			if(!close_ticket)
@@ -203,8 +216,6 @@
 		});
 
 		$(window).on('unload', function(){
-
-			$.removeCookie('chat_init');
 			$.post(BASE_URL+'panel/updateState',
 			{'id' : $("#authenticity_ticket").val(),'state' : 3},
 			 function(data) {
